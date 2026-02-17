@@ -251,3 +251,30 @@ function copyPassword(index){
 }
 
 
+const numberInputs = document.querySelectorAll('input[type="number"]');
+
+numberInputs.forEach(input => {
+
+    input.addEventListener("input", () => enforceMinMax(input));
+
+
+    input.addEventListener("blur", () => {
+        if (input.value === "") {
+            input.value = input.min || 0;
+        }
+        enforceMinMax(input);
+    });
+});
+
+function enforceMinMax(input) {
+    if (input.value === "") return;
+
+    const min = Number(input.min);
+    const max = Number(input.max);
+    const value = Number(input.value);
+
+    if (value < min) input.value = min;
+    if (value > max) input.value = max;
+}
+
+
