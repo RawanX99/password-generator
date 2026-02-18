@@ -255,18 +255,18 @@ const numberInputs = document.querySelectorAll('input[type="number"]');
 
 numberInputs.forEach(input => {
 
-    input.addEventListener("input", () => enforceMinMax(input));
+    input.addEventListener("input", () => validateNumber(input));
 
 
     input.addEventListener("blur", () => {
         if (input.value === "") {
             input.value = input.min || 0;
         }
-        enforceMinMax(input);
+        validateNumber(input);
     });
 });
 
-function enforceMinMax(input) {
+function validateNumber(input) {
     if (input.value === "") return;
 
     const min = Number(input.min);
